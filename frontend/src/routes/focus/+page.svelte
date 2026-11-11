@@ -218,6 +218,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>What Next - Autodidact</title>
+</svelte:head>
+
 <div class="max-w-5xl mx-auto px-6 py-6 space-y-6">
 	<!-- Header -->
 	<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-zinc-800">

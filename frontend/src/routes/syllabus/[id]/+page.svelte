@@ -511,7 +511,19 @@
 			alert(err.message || 'Failed to delete');
 		}
 	}
+
+	let pageTitle = $derived.by(() => {
+		if (!syllabus) return 'Autodidact';
+		if (currentStep) {
+			return `${currentStep.title} - ${syllabus.title} - Autodidact`;
+		}
+		return `${syllabus.title} - Autodidact`;
+	});
 </script>
+
+<svelte:head>
+	<title>{pageTitle}</title>
+</svelte:head>
 
 <div class="h-full w-full">
 	{#if loading}

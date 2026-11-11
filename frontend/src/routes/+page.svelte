@@ -84,6 +84,10 @@
 	let whatNextActive = $derived($focusList.filter(item => item.status !== 'completed'));
 </script>
 
+<svelte:head>
+	<title>Dashboard - Autodidact</title>
+</svelte:head>
+
 <div class="max-w-5xl mx-auto px-6 py-6 space-y-6">
 	<!-- Top Header & Actions -->
 	<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-zinc-800">

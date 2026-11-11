@@ -1,0 +1,19 @@
+# Binaries & build artifacts
+/backend/autodidact-api
+/frontend/build
+/frontend/.svelte-kit
+/frontend/node_modules
+
+# SQLite Databases & WAL files
+*.db
+*.db-shm
+*.db-wal
+/data
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db

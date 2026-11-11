@@ -87,10 +87,19 @@
 			isCreating = false;
 		}
 	}
+
+	let layoutTitle = $derived.by(() => {
+		if (page.url.pathname === '/') return 'Dashboard - Autodidact';
+		if (page.url.pathname === '/focus') return 'What Next - Autodidact';
+		if ($activeSyllabus?.title) {
+			return `${$activeSyllabus.title} - Autodidact`;
+		}
+		return 'Autodidact';
+	});
 </script>
 
 <svelte:head>
-	<title>Autodidact</title>
+	<title>{layoutTitle}</title>
 </svelte:head>
 
 <div class="h-screen w-screen flex bg-zinc-950 text-zinc-100 font-sans overflow-hidden">
