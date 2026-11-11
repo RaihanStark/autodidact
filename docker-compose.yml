@@ -1,0 +1,46 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: autodidact-backend
+    restart: unless-stopped
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+      - DB_PATH=/data/autodidact.db
+      - AUTH_TOKEN=${AUTH_TOKEN:-autodidact-local-key}
+      - CORS_ORIGIN=*
+    volumes:
+      - autodidact-data:/data
+    ports:
+      # Bound to 127.0.0.1 to prevent unauthorized local network / LAN access
+      - "127.0.0.1:8080:8080"
+    networks:
+      - autodidact-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: autodidact-frontend
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - BACKEND_URL=http://backend:8080
+    ports:
+      # Bound to 127.0.0.1 to protect against network snooping / external LAN connections
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - autodidact-net
+
+volumes:
+  autodidact-data:
+    name: autodidact-data
+
+networks:
+  autodidact-net:
+    driver: bridge
